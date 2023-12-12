@@ -13,7 +13,6 @@ tabContent = document.querySelectorAll("[data-content]");
 tabs.forEach((tab) => {
   tab.addEventListener("click", () => {
     const target = document.querySelector(tab.dataset.target);
-    console.log(target);
 
     tabContent.forEach((tabContents) => {
       tabContents.classList.remove("skills__active");
@@ -66,7 +65,6 @@ document
   .addEventListener("click", togglePortfolioPopup);
 
 function portfolioItemDetails(portfolioItem) {
-  console.log(portfolioItem);
   document.querySelector(".pp__thumbnail img").src =
     portfolioItem.querySelector(".work__img").src;
 
@@ -85,16 +83,12 @@ const nextButton = document.querySelector(".nextButton");
 prevButton.onclick = () => nextSlide(-1);
 nextButton.onclick = () => nextSlide(+1);
 
-console.log(prevButton);
-console.log(nextButton);
-
 let slideIndex = 1;
 
 showSlides(slideIndex);
 
 function nextSlide(n) {
   showSlides((slideIndex += n));
-  console.log("Entered into prevButton");
 }
 function currentSlide(n) {
   showSlides((slideIndex = n));
@@ -104,7 +98,6 @@ function showSlides(n) {
   let i;
   const slides = document.querySelectorAll(".imgScroll__slide");
   const dots = document.querySelectorAll(".imgScroll__dot");
-  console.log(dots);
 
   if (n > slides.length) {
     slideIndex = 1;
@@ -184,8 +177,18 @@ function navHighlighter() {
 const navMenu = document.getElementById("sidebar"),
   navToggle = document.getElementById("nav-toggle"),
   navClose = document.getElementById("nav-close");
-console.log(navToggle);
-console.log("Nav meu are" + navMenu);
+// Once user click on a an any menu option then we will remove
+navOptions = document.querySelectorAll(".nav__item");
+
+navOptions.forEach(function (navOption) {
+  // Add a click event listener to each navOption
+  navOption.onclick = function () {
+    // Do something when the navOption is clicked, for example, remove the "show-sidebar" class
+    navMenu.classList.remove("show-sidebar");
+    navToggle.innerHTML = "=";
+  };
+});
+
 if (navToggle) {
   navToggle.addEventListener("click", () => {
     navMenu.classList.toggle("show-sidebar");
